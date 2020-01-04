@@ -1,38 +1,81 @@
-.App {
-  text-align: center;
-}
+body{
+  background-color:#E0E5EC;
+  color:rgb(80,80,80);
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  --shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px  rgba(255,255,255, 0.5);
+  --shadowInset: 9px 9px 16px rgb(163,177,198,0.6) inset, -9px -9px 16px  rgba(255,255,255, 0.5) inset;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  --margin: 20px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#header{
+  display:flex;
+  padding:15px;
+  justify-content: space-between;
+  box-shadow: var(--shadow);  
+  margin:var(--margin);
+}
+.ticker{
+  width:150px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  align-items: center;  
+  box-shadow: var(--shadow);
+  padding:5px;
+  border-radius: 100px;
+  overflow:hidden;
+}
+.ticker-count{
+  min-width:35px;
+  text-align:center;
+  font-size:25px;
+}
+.button-circle{
+  display:flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  user-select: none;
+  font-size:22px;
+  height:40px;
+  width:40px;
+  border-radius: 1000px;
+  box-shadow: var(--shadow);
+}
+.button-circle:active{
+  box-shadow: var(--shadowInset);
+}
+.ticker-row{
+  display:flex;
+  margin:var(--margin);
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  padding:var(--margin)
+}
+.ticker-text{
+  font-size:35px;
 }
 
-.App-link {
-  color: #61dafb;
+.count--bounce {
+  animation: count-keyframes--bounce 0.8s ease-out
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+@keyframes count-keyframes--bounce {
+  0%,
   to {
-    transform: rotate(360deg);
+    transform: rotate(0)
+  }
+  10% {
+    transform: scale(1.2)
+  }
+  20% {
+    transform: scale(1.15) rotate(4deg) translateY(-6px)
+  }
+  40% {
+    transform: scale(1.1) rotate(2deg) translateY(0)
+  }
+  60% {
+    transform: rotate(-2deg) translateY(-3px)
+  }
+  80% {
+    transform: rotate(-1deg) translateY(0)
   }
 }
