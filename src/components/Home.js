@@ -11,11 +11,11 @@ export default function Home() {
   React.useEffect(() => {
     let username = localStorage.getItem('username')
     if(username) dispatch({type: 'login', username})
-    
+
   }, [dispatch])
 
   return (
-    <div>
+    <main>
       { 
           global.state.username
           ? 
@@ -23,6 +23,6 @@ export default function Home() {
           :
             <Login />
         }
-    </div>
+    </main>
   )
 }

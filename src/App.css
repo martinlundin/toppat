@@ -4,15 +4,45 @@ body{
 
   --shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px  rgba(255,255,255, 0.5);
   --shadowInset: 9px 9px 16px rgb(163,177,198,0.6) inset, -9px -9px 16px  rgba(255,255,255, 0.5) inset;
-
   --margin: 20px;
 }
-#header{
+*{
+  box-sizing: border-box;
+}
+header{
   display:flex;
-  padding:15px;
   justify-content: space-between;
   box-shadow: var(--shadow);  
+  padding:var(--margin);
+}
+main{
   margin:var(--margin);
+}
+input[type=text]{
+  width:100%;
+  border:0;
+  box-shadow: var(--shadowInset);
+  padding:10px;
+  background:transparent;
+  color:rgb(80,80,80);
+  font-size:20px;
+}
+input[type=text]:focus{
+  outline:none;
+}
+button{
+  width:100%;
+  padding:10px;
+  font-size:20px;
+  border:0;
+  background:transparent;
+  box-shadow: var(--shadow);
+}
+.login-screen{
+  display:flex;
+  min-height:100vh;
+  align-items: center;
+  flex-direction: column;
 }
 .ticker{
   width:150px;
@@ -45,7 +75,7 @@ body{
 }
 .ticker-row{
   display:flex;
-  margin:var(--margin);
+  margin:var(--margin) 0;
   justify-content: space-between;
   align-items: center;
   box-shadow: var(--shadow);

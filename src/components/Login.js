@@ -7,8 +7,9 @@ export default function Login() {
   const { dispatch } = global
 
   return (
-    <div>
+    <div className="login-screen">
       <input type="text" placeholder="Namn" value={usernameInput} onChange={(e) => {setUsernameInput(e.target.value)}}/>
+      <br/>
       <button type="submit" onClick={() => { dispatch({type: 'login', username: usernameInput})} }>Nästa</button>
     </div>
   )

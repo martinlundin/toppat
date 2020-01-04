@@ -6,9 +6,9 @@ export default function Header() {
   const { dispatch } = global
 
   return (
-    <header id="header">
+    <header>
       <span>
-        Toppat
+        {global.state.username}
       </span>
       <span>
         {
