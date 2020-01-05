@@ -14,7 +14,7 @@ export default function Header() {
         {
           global.state.username
           ?
-          <span onClick={() => { dispatch({type: 'logout'})} }>Logout</span>
+          <button onClick={() => { dispatch({type: 'logout'})} }>Logout</button>
           :
           null
         }

@@ -2,6 +2,23 @@ import React, {createContext, useReducer} from 'react';
 
 const initialState = {
   username: null,
+  tickers: [
+    {name: '5', checked: true},
+    {name: '5+', checked: true},
+    {name: '6A', checked: true},
+    {name: '6A+', checked: true},
+    {name: '6B', checked: true},
+    {name: '6B+', checked: true},
+    {name: '6C', checked: true},
+    {name: '6C+', checked: true},
+    {name: '7A', checked: true},
+    {name: '7A+', checked: true},
+    {name: '7B', checked: true},
+    {name: '7B+', checked: true},
+    {name: '7C', checked: true},
+    {name: '7C+', checked: true},
+    {name: '8A', checked: true},
+  ],
 };
 const store = createContext(initialState);
 const { Provider } = store;
@@ -21,6 +38,12 @@ const StateProvider = ( { children } ) => {
           ...state,
           username: initialState.username,
         };
+      case 'setTickers':
+        localStorage.setItem('tickers', JSON.stringify(action.tickers))
+        return {
+          ...state,
+          tickers: action.tickers,
+        };  
       default:
         throw new Error();
     };

@@ -12,6 +12,7 @@ body{
 header{
   display:flex;
   justify-content: space-between;
+  align-items: center;
   box-shadow: var(--shadow);  
   padding:var(--margin);
 }
@@ -38,11 +39,49 @@ button{
   background:transparent;
   box-shadow: var(--shadow);
 }
+button:active{
+  outline:0;
+  box-shadow: var(--shadowInset);
+}
 .login-screen{
   display:flex;
   min-height:100vh;
   align-items: center;
   flex-direction: column;
+}
+.edit-wrap{
+  display:flex;
+  width:100%;
+  margin:var(--margin) 0;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.edit-indicator{
+  display:flex;
+  justify-content: flex-end;
+}
+.edit-visible-tickers{
+  display: flex;
+  flex-wrap: wrap; 
+  padding-top:10px;
+}
+.checkbox{
+  box-shadow: var(--shadow);
+  display:flex;
+  min-height:35px;
+  min-width:35px;
+  align-items: center;
+  justify-content: center;
+  margin:5px;
+  font-size:10px;
+  border-radius:1000px;
+}
+.checkbox[data-checked=true]{
+  box-shadow: var(--shadowInset);
+}
+.checkbox input{
+  visibility:hidden;
+  position:absolute;
 }
 .ticker{
   width:150px;
