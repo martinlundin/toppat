@@ -6,16 +6,29 @@ import Checkbox from './Checkbox'
 import ButtonCircle from './ButtonCircle'
 import { AiOutlineEdit } from 'react-icons/ai'
 
+import { getTickerCount } from './../firebase'
+
 export default function LoggedIn() {
   let global = React.useContext(store)
   let { dispatch } = global
 
   let [edit, setEdit] = React.useState(false)
-
+  
   const handleCheckboxChange = (name, checked) => {
-    let newTickers = global.state.tickers.map((ticker) => (ticker.name === name ? {...ticker, checked: !checked} : ticker))
-    dispatch({ type: 'setTickers', tickers: newTickers })
+    let newTickers = global.state.showableTickers.map((ticker) => (ticker.name === name ? {...ticker, checked: !checked} : ticker))
+    dispatch({ type: 'setShowableTickers', showableTickers: newTickers })
   }
+
+  React.useEffect(() => {
+    global.state.showableTickers.map((ticker) => {
+      if(ticker.checked) {
+        getTickerCount(global.state.username, ticker.name).then((count) => {
+          dispatch({type: 'setLocalTickerCount', ticker: ticker.name, count})
+        })
+      }
+    })
+  }, [dispatch, global.state.showableTickers, global.state.username])
+  
   return (
     <div>
       <Header/>
@@ -30,7 +43,7 @@ export default function LoggedIn() {
             ? 
               (
                 <div className="edit-visible-tickers">
-                  {global.state.tickers.map((ticker) => {
+                  {global.state.showableTickers.map((ticker) => {
                     return (
                       <Checkbox key={ticker.name} {...ticker} onChange={() => { handleCheckboxChange(ticker.name, ticker.checked) }}/>
                     )
@@ -44,7 +57,7 @@ export default function LoggedIn() {
 
       <div className="tickers-wrap">
         {
-          global.state.tickers.map((ticker) => {
+          global.state.showableTickers.map((ticker) => {
             if(ticker.checked) return <TickerRow key={ticker.name} text={ticker.name} />
           })
         }

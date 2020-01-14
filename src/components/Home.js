@@ -10,9 +10,9 @@ export default function Home() {
 
   React.useEffect(() => {
     let username = localStorage.getItem('username')
-    let tickers = localStorage.getItem('tickers')
+    let showableTickers = localStorage.getItem('showableTickers')
     if(username) dispatch({type: 'login', username})
-    if(tickers) dispatch({type: 'setTickers', tickers: JSON.parse(tickers)})
+    if(showableTickers) dispatch({type: 'setShowableTickers', showableTickers: JSON.parse(showableTickers)})
 
   }, [dispatch])
 

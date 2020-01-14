@@ -4,6 +4,7 @@ import { StateProvider } from './store.js';
 
 import Home from './components/Home';
 
+
 function App() {
   return (
     <StateProvider>

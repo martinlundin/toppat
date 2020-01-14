@@ -1,8 +1,9 @@
 import React, {createContext, useReducer} from 'react';
+import { addTickerCountToUser } from './firebase'
 
 const initialState = {
   username: null,
-  tickers: [
+  showableTickers: [
     {name: '5', checked: true},
     {name: '5+', checked: true},
     {name: '6A', checked: true},
@@ -19,6 +20,23 @@ const initialState = {
     {name: '7C+', checked: true},
     {name: '8A', checked: true},
   ],
+  tickers: {
+    '5': 0,
+    '5+': 0,
+    '6A': 0,
+    '6A+': 0,
+    '6B': 0,
+    '6B+': 0,
+    '6C': 0,
+    '6C+': 0,
+    '7A': 0,
+    '7A+': 0,
+    '7B': 0,
+    '7B+': 0,
+    '7C': 0,
+    '7C+': 0,
+    '8A': 0,
+  }
 };
 const store = createContext(initialState);
 const { Provider } = store;
@@ -38,14 +56,32 @@ const StateProvider = ( { children } ) => {
           ...state,
           username: initialState.username,
         };
-      case 'setTickers':
-        localStorage.setItem('tickers', JSON.stringify(action.tickers))
+      case 'setShowableTickers':
+        localStorage.setItem('showableTickers', JSON.stringify(action.showableTickers))
         return {
           ...state,
-          tickers: action.tickers,
-        };  
+          showableTickers: action.showableTickers,
+        };
+      case 'setLocalTickerCount':        
+        let localTickers = state.tickers
+        localTickers[action.ticker] = action.count
+
+        return {
+          ...state,
+          tickers: localTickers
+        };
+      case 'setTickerCount':
+        addTickerCountToUser(state.username, action.ticker, action.count)
+        
+        let tickers = state.tickers
+        tickers[action.ticker] = action.count
+
+        return {
+          ...state,
+          tickers
+        };
       default:
-        throw new Error();
+        console.log('unkown actiontype: ' + action.type);
     };
   }, initialState);
 

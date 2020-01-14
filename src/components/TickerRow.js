@@ -7,7 +7,7 @@ export default function TickerRow(props) {
       <div className="ticker-text">
         <span>{props.text}</span>
       </div>
-        <Ticker/>
+        <Ticker ticker={props.text}/>
     </div>
   )
 }
