@@ -3,8 +3,6 @@ import TickerRow from './TickerRow'
 import Header from './Header'
 import { store } from './../store'
 import Checkbox from './Checkbox'
-import ButtonCircle from './ButtonCircle'
-import { AiOutlineEdit } from 'react-icons/ai'
 
 import { getTickerCount } from './../firebase'
 
@@ -28,16 +26,11 @@ export default function LoggedIn() {
       }
     })
   }, [dispatch, global.state.showableTickers, global.state.username])
-  
+
   return (
     <div>
-      <Header/>
+      <Header setEdit={setEdit} edit={edit}/>
       <div className="edit-wrap">
-        <div className="edit-indicator">
-          <ButtonCircle onClick={() => {setEdit(!edit)}}>
-            <AiOutlineEdit />
-          </ButtonCircle>
-        </div>
         {
           edit === true
             ? 

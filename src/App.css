@@ -43,6 +43,10 @@ button:active{
   outline:0;
   box-shadow: var(--shadowInset);
 }
+.logout-button{
+  margin: 0 0 0 10px;
+  width:auto;
+}
 .login-screen{
   display:flex;
   min-height:100vh;
@@ -57,8 +61,12 @@ button:active{
   flex-direction: column;
 }
 .edit-indicator{
-  display:flex;
+  display:inline-flex;
   justify-content: flex-end;
+}
+.header-edit-wrap{
+  display:flex;
+  align-items: center;
 }
 .edit-visible-tickers{
   display: flex;
